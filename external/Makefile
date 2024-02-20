@@ -20,4 +20,4 @@ plan: .terraform.lock.hcl
 	terraform plan
 
 apply: .terraform.lock.hcl namespaces
-	terraform apply -auto-approve
+	terraform apply -auto-approve -lock=false

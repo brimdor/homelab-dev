@@ -1,7 +1,7 @@
 terraform {
   required_version = "~> 1.6.0"
 
-  backend "remote" {
+  cloud {
     hostname     = "app.terraform.io"
     organization = "brimdor-dev"
 
