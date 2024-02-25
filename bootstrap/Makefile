@@ -12,9 +12,10 @@ namespace:
 
 .PHONY: argocd
 argocd:
-  helm upgrade --install argocd argocd \
-    --namespace argocd \
-    --dependency-update
+	helm upgrade --install argocd argocd \
+	--namespace argocd \
+	--dependency-update
+  cd argocd && ./apply.sh
 
 .PHONY: root
 root:
