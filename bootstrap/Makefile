@@ -6,9 +6,15 @@ namespace:
 	kubectl create namespace argocd --dry-run=client --output=yaml \
 		| kubectl apply -f -
 
+# .PHONY: argocd
+# argocd:
+# 	cd argocd && ./apply.sh
+
 .PHONY: argocd
 argocd:
-	cd argocd && ./apply.sh
+  helm upgrade --install argocd argocd \
+    --namespace argocd \
+    --dependency-update
 
 .PHONY: root
 root:
