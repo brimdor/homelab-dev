@@ -13,6 +13,13 @@ helm template \
     argocd . \
     | kubectl apply -n argocd -f -
 
-kubectl -n argocd wait --timeout=60s --for condition=Established \
-       crd/applications.argoproj.io \
-       crd/applicationsets.argoproj.io
+# kubectl -n argocd wait --timeout=60s --for condition=Established \
+#        crd/applications.argoproj.io \
+#        crd/applicationsets.argoproj.io
+
+for i in {1..5}; do
+    kubectl -n argocd wait --timeout=60s --for condition=Established \
+    crd/applications.argoproj.io \
+    crd/applicationsets.argoproj.io && break || echo "Retry $i/5 failed, retrying..."
+    sleep 5
+done
