@@ -46,8 +46,6 @@ def main() -> None:
     check_python_version(
         required_version='3.10.0'
     )
-
-    editor = Prompt.ask("Select text editor", default='nvim')
     domain = Prompt.ask("Enter your domain", default=upstream_config['domain'])
     seed_repo = Prompt.ask("Enter seed repo", default=upstream_config['seed_repo'])
     branch = Prompt.ask("Enter seed repo branch", default=upstream_config['branch'])
@@ -114,7 +112,7 @@ def main() -> None:
 
     if Confirm.ask("Update server list?", default=True):
         subprocess.run(
-            [editor, 'metal/inventories/prod.yml']
+            ['nvim metal/inventories/prod.yml']
         )
 
 
