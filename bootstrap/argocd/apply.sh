@@ -5,12 +5,21 @@ VALUES="values.yaml"
 kubectl get ingress argocd-server --namespace argocd \
     || VALUES="values-seed.yaml"
 
-echo "ARGOCD VALUES = $VALUES"
+helm template \
+    --dependency-update \
+    --include-crds \
+    --namespace argocd \
+    --values "${VALUES}" \
+    argocd . \
+    | kubectl apply -n argocd -f -
 
-sleep 30
+# kubectl -n argocd wait --timeout=60s --for condition=Established \
+#        crd/applications.argoproj.io \
+#        crd/applicationsets.argoproj.io
 
-echo ""
-echo "<<<<<< ArgoCD Pods and Services >>>>>>"
-kubectl get pods --namespace argocd
-kubectl get services --namespace argocd
-echo ""
+for i in {1..5}; do
+    kubectl -n argocd wait --timeout=60s --for condition=Established \
+    crd/applications.argoproj.io \
+    crd/applicationsets.argoproj.io && break || echo "Retry $i/5 failed, retrying..."
+    sleep 60
+done
