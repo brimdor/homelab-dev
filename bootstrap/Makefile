@@ -8,11 +8,12 @@ namespace:
 
 .PHONY: argocd
 argocd:
-	helm upgrade --install argocd argocd \
+	helm template --install argocd argocd \
 	--namespace argocd \
 	--dependency-update \
 	--force \
-	--replace
+	--replace \
+	| kubectl apply -n argocd -f -
 	cd argocd && ./apply.sh
 
 .PHONY: root
