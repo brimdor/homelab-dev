@@ -11,7 +11,8 @@ argocd:
 	helm upgrade --install argocd argocd \
 	--namespace argocd \
 	--dependency-update \
-	--force
+	--force \
+	--replace
 	cd argocd && ./apply.sh
 
 .PHONY: root
