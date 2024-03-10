@@ -57,6 +57,7 @@ def main() -> None:
         pattern=upstream_config['domain'],
         replacement=domain,
         paths=[
+            "scripts/configure",
             ".ci",
             "apps",
             "bootstrap",
@@ -70,6 +71,7 @@ def main() -> None:
         pattern=upstream_config['seed_repo'],
         replacement=seed_repo,
         paths=[
+            "scripts/configure",
             "bootstrap",
             "platform"
         ]
@@ -79,6 +81,7 @@ def main() -> None:
         pattern=upstream_config['branch'],
         replacement=branch,
         paths=[
+            "scripts/configure",
             "bootstrap/root/values-seed.yaml",
             "bootstrap/root/values.yaml"
         ]
@@ -88,6 +91,7 @@ def main() -> None:
         pattern=upstream_config['timezone'],
         replacement=timezone,
         paths=[
+            "scripts/configure",
             "apps",
             "system",
             "metal"
@@ -98,6 +102,7 @@ def main() -> None:
         pattern=upstream_config['loadbalancer_ip_range'],
         replacement=loadbalancer_ip_range,
         paths=[
+            "scripts/configure",
             "metal/inventories/prod.yml",
             "external/main.tf",
         ]
@@ -107,6 +112,7 @@ def main() -> None:
         pattern=upstream_config['control_plane_endpoint'],
         replacement=control_plane_endpoint,
         paths=[
+            "scripts/configure",
             "metal/inventories/prod.yml"
         ]
     )
@@ -124,6 +130,7 @@ def main() -> None:
             pattern=upstream_config['terraform_workspace'],
             replacement=terraform_workspace,
             paths=[
+                "scripts/configure",
                 "external/versions.tf"
             ]
         )
