@@ -10,7 +10,8 @@ namespace:
 argocd:
 	helm upgrade --install argocd argocd \
 	--namespace argocd \
-	--dependency-update
+	--dependency-update \
+	--values argocd/values.yaml
 
 .PHONY: root
 root:
