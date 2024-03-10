@@ -11,7 +11,7 @@ argocd:
 	helm upgrade --install argocd argocd \
 	--namespace argocd \
 	--dependency-update \
-	--values argocd/values.yaml
+	--values argocd/values-seed.yaml
 
 .PHONY: root
 root:
