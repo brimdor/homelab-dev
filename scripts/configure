@@ -14,13 +14,13 @@ import sys
 from rich.prompt import Confirm, Prompt
 
 upstream_config = {
-    "seed_repo": "https://github.com/brimdor/homelab",
+    "seed_repo": "<seed_repo>",
     "branch": "<branch_name>",
-    "domain": "eaglepass.io",
-    "timezone": "America/Chicago",
-    "terraform_workspace": "brimdor",
-    "loadbalancer_ip_range": "10.0.50.224/27",
-    "control_plane_endpoint": "10.0.50.100"
+    "domain": "<domain>",
+    "timezone": "<timezone>",
+    "terraform_workspace": "<terraform_workspace>",
+    "loadbalancer_ip_range": "<loadbalancer_ip_range>",
+    "control_plane_endpoint": "<control_plane_endpoint>"
 }
 
 
@@ -79,7 +79,8 @@ def main() -> None:
         pattern=upstream_config['branch'],
         replacement=branch,
         paths=[
-            "bootstrap/root/values-seed.yaml"
+            "bootstrap/root/values-seed.yaml",
+            "bootstrap/root/values.yaml"
         ]
     )
 

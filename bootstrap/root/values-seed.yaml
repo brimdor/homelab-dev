@@ -1,3 +1,3 @@
 gitops:
-  repo: https://github.com/brimdor/homelab-dev
-  revision: main
+  repo: <seed_repo>
+  revision: <branch_name>
