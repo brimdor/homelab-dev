@@ -10,8 +10,8 @@ namespace:
 argocd:
 	helm upgrade --install argocd argocd \
 	--namespace argocd \
-	--dependency-update \
-	--values argocd/values-seed.yaml
+	--dependency-update
+	cd argocd && ./apply.sh
 
 .PHONY: root
 root:
