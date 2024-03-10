@@ -104,7 +104,7 @@ def main() -> None:
         paths=[
             "scripts/configure",
             "metal/inventories/prod.yml",
-            "external/main.tf",
+            "external/main.tf"
         ]
     )
 
