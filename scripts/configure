@@ -14,13 +14,13 @@ import sys
 from rich.prompt import Confirm, Prompt
 
 upstream_config = {
-    "seed_repo": "https://github.com/brimdor/homelab",
-    "branch": "<branch_name>",
-    "domain": "eaglepass.io",
+    "seed_repo": "https://github.com/brimdor/homelab-dev",
+    "branch": "main",
+    "domain": "falconpunch.org",
     "timezone": "America/Chicago",
-    "terraform_workspace": "brimdor",
-    "loadbalancer_ip_range": "10.0.50.224/27",
-    "control_plane_endpoint": "10.0.50.100"
+    "terraform_workspace": "brimdor-dev",
+    "loadbalancer_ip_range": "10.0.60.224/27",
+    "control_plane_endpoint": "10.0.60.100"
 }
 
 
@@ -57,6 +57,7 @@ def main() -> None:
         pattern=upstream_config['domain'],
         replacement=domain,
         paths=[
+            "scripts/configure",
             ".ci",
             "apps",
             "bootstrap",
@@ -70,6 +71,7 @@ def main() -> None:
         pattern=upstream_config['seed_repo'],
         replacement=seed_repo,
         paths=[
+            "scripts/configure",
             "bootstrap",
             "platform"
         ]
@@ -79,7 +81,9 @@ def main() -> None:
         pattern=upstream_config['branch'],
         replacement=branch,
         paths=[
-            "bootstrap/root/values-seed.yaml"
+            "scripts/configure",
+            "bootstrap/root/values-seed.yaml",
+            "bootstrap/root/values.yaml"
         ]
     )
 
@@ -87,6 +91,7 @@ def main() -> None:
         pattern=upstream_config['timezone'],
         replacement=timezone,
         paths=[
+            "scripts/configure",
             "apps",
             "system",
             "metal"
@@ -97,8 +102,9 @@ def main() -> None:
         pattern=upstream_config['loadbalancer_ip_range'],
         replacement=loadbalancer_ip_range,
         paths=[
+            "scripts/configure",
             "metal/inventories/prod.yml",
-            "external/main.tf",
+            "external/main.tf"
         ]
     )
 
@@ -106,6 +112,7 @@ def main() -> None:
         pattern=upstream_config['control_plane_endpoint'],
         replacement=control_plane_endpoint,
         paths=[
+            "scripts/configure",
             "metal/inventories/prod.yml"
         ]
     )
@@ -123,6 +130,7 @@ def main() -> None:
             pattern=upstream_config['terraform_workspace'],
             replacement=terraform_workspace,
             paths=[
+                "scripts/configure",
                 "external/versions.tf"
             ]
         )
